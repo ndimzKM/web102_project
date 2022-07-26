@@ -1,0 +1,280 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Epilogue", Arial, sans-serif;
+}
+
+body.backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.no-backdrop {
+  background: none;
+}
+
+nav {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+nav .nav-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 1000px;
+  padding: 10px 0;
+}
+nav .nav-container .logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+nav .nav-container .logo span {
+  font-weight: bold;
+}
+nav .nav-container form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px #ccc solid;
+  padding: 10px 0;
+  width: 600px;
+  border-radius: 5px;
+}
+nav .nav-container form i {
+  width: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+}
+nav .nav-container form input {
+  width: 93%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1.1em;
+}
+nav .nav-container .actions {
+  display: flex;
+  align-items: center;
+}
+nav .nav-container .actions i {
+  font-size: 1.5em;
+}
+nav .nav-container .actions .avatar {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+
+main {
+  display: flex;
+  margin: auto;
+  max-width: 1000px;
+  margin-top: 30px;
+}
+main .side-nav {
+  width: 25%;
+}
+main .side-nav ul li {
+  display: block;
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+main .side-nav ul li a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2em;
+}
+main .side-nav ul li a i {
+  font-size: 1.2em;
+}
+main .side-nav ul li a span {
+  padding-left: 5px;
+  padding-top: 3px;
+}
+main .side-nav ul li:hover {
+  background: #e8ebfb;
+  border-radius: 5px;
+  border-left: 5px blue solid;
+}
+main .side-nav ul li.active {
+  background: #e8ebfb;
+  border-radius: 5px;
+  border-left: 5px blue solid;
+}
+main .questions {
+  margin-left: 50px;
+  position: relative;
+  width: 100%;
+}
+main .questions .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+main .questions .top h2 {
+  text-decoration: underline;
+}
+main .questions .top a {
+  background-color: blue;
+  padding: 10px 15px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+main .questions .question {
+  width: 80%;
+  margin-bottom: 30px;
+  border-bottom: 1px #ccc solid;
+  padding-bottom: 20px;
+}
+main .questions .question a {
+  text-decoration: none;
+}
+main .questions .question-info {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+main .questions .question-info i {
+  font-size: 0.4em;
+  padding: 0 10px;
+}
+main .questions .tags span {
+  background: #e8ebfb;
+  padding: 5px;
+}
+main .questions .new-question {
+  margin-bottom: 20px;
+}
+main .questions .new-question textarea {
+  width: 70%;
+  margin-top: 10px;
+  border-width: 1px;
+  border-color: blue;
+}
+main .questions .new-question button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: blue;
+  border-color: blue;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1em;
+}
+main .questions .answers p {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+main .questions .answers .profile {
+  display: flex;
+  align-items: center;
+}
+main .questions .answers .profile .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+main .questions .answers .profile .avatar i {
+  font-size: 1.3em;
+}
+main .questions .answers .profile i {
+  padding: 0 10px;
+  font-size: 0.5em;
+}
+main .questions .popup {
+  width: 80%;
+  position: absolute;
+  z-index: 100;
+  top: 100px;
+  background: #e8ebfb;
+  border-radius: 5px;
+  padding: 20px;
+  display: none;
+}
+main .questions .popup .profile {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+main .questions .popup .profile span {
+  padding-left: 5px;
+}
+main .questions .popup .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .questions .popup .avatar i {
+  font-size: 1.3em;
+}
+main .questions .popup textarea {
+  width: 100%;
+  border-color: blue;
+  border-radius: 5px;
+  outline: none;
+  border-width: 1px;
+}
+main .questions .popup .add-tags {
+  margin-top: 15px;
+}
+main .questions .popup .add-tags h4 {
+  margin-bottom: 10px;
+}
+main .questions .popup .add-tags input {
+  padding: 10px;
+  border-color: blue;
+  outline: none;
+  border-radius: 5px;
+  border-width: 1px;
+}
+main .questions .popup button {
+  margin-top: 20px;
+  padding: 8px 30px;
+  font-size: 1.1em;
+  color: #fff;
+  background: blue;
+  border-color: blue;
+  border-radius: 5px;
+}
+main .questions .popup.show {
+  display: block;
+}
+
+section.overlay {
+  position: absolute;
+  background-color: #fff;
+  opacity: 0.8;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  top: 0;
+}
+
+/*# sourceMappingURL=styles.css.map */
