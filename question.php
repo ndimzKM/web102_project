@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +11,24 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-   <nav>
-    <div class="nav-container">
-        <div class="logo">
-           <span>bantaba</span>
-       </div>
-       <form>
-           <i class="bx bx-search"></i>
-           <input type="text" placeholder="Search a question" name="question" />
-       </form>
-       <div class="actions">
-           <div class="avatar">
-               <i class="bx bx-user"></i>
-           </div>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <span>bantaba</span>
+            </div>
+            <form>
+                <i class="bx bx-search"></i>
+                <input type="text" placeholder="Search a question" name="question" />
+            </form>
+            <div class="actions">
+                <div class="avatar">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
         </div>
-    </div>
-   </nav>
+    </nav>
     <main>
         <section class="side-nav">
             <ul>
@@ -42,12 +44,12 @@
                         <span>Explore Topics</span>
                     </a>
                 </li>
-               <li>
+                <li>
                     <a href="#">
                         <i class="bx bx-news"></i>
                         <span>My Topics</span>
                     </a>
-                </li> 
+                </li>
                 <li>
                     <a href="#">
                         <i class="bx bx-help-circle"></i>
@@ -55,12 +57,12 @@
                     </a>
                 </li>
             </ul>
-        </section> 
+        </section>
         <section class="questions">
             <div class="top">
                 <h2>All Questions</h2>
                 <a class="ask-question" href="#">Ask a question</a>
-            </div> 
+            </div>
             <div class="question">
                 <h3>
                     <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
@@ -81,7 +83,7 @@
             </div>
             <form class="new-question">
                 <h3>Add an answer</h3>
-                <textarea rows="10"></textarea><br/>
+                <textarea rows="10"></textarea><br />
                 <button type="submit">Submit</button>
             </form>
             <div class="answers">
@@ -92,7 +94,7 @@
                     <span>Ousman James</span>
                     <i class="bx bxs-circle"></i>
                     <span>22 July, 2022</span>
-                </div> 
+                </div>
                 <p>This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.</p>
             </div>
             <form class="popup">
@@ -102,7 +104,7 @@
                         <i class="bx bx-user"></i>
                     </div>
                     <span>Ousman James</span>
-                </div> 
+                </div>
                 <textarea rows="10" name="question"></textarea>
                 <div class="add-tags">
                     <h4>Add tags separated by commas</h4>
@@ -127,21 +129,20 @@
         overlay.style.display = 'none'
 
         const togglePopup = e => {
-            if(popup.classList.length == 1){
+            if (popup.classList.length == 1) {
                 popup.classList.add('show');
                 overlay.style.display = 'block'
                 console.log(overlay.style.display)
-            }
-            else{
+            } else {
                 popup.className = 'popup'
                 body.className = 'no-backdrop'
                 overlay.style.display = 'none'
             }
-                
-        }
-        
-        askQuestion.addEventListener('click', togglePopup);
 
+        }
+
+        askQuestion.addEventListener('click', togglePopup);
     </script>
 </body>
+
 </html>
