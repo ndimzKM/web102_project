@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login | Bantaba</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-    <meta charset="UTF-8" />
+<?php include('config.php'); ?>
+<?php include('includes/registration_login.php'); ?>
+
+
+<title>Bantaba | Sign in </title>
 </head>
+
 <body>
-    <h1>Login</h1>
-</body>
-</html>
+    <div class="container">
+        <!-- Navbar -->
+
+        <!-- // Navbar -->
+
+        <div style="width: 40%; margin: 20px auto;">
+            <form method="post" action="login.php">
+                <h2>Login</h2>
+                <?php include(ROOT_PATH . '/includes/errors.php') ?>
+                <input type="text" name="username" value="<?php echo $username; ?>" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit" class="btn" name="login_btn">Login</button>
+                <p>
+                    Not yet a member?<a href="register.php">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <!-- // container -->
+
+    \

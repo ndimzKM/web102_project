@@ -1,10 +1,15 @@
 <?php
+session_start();
 
-$dbHost = "localhost";
-$dbName = "bantaba";
-$dbUsername = "root";
-$dbPassword = "";
+// connect to database
+// coming soon...
+$conn = mysqli_connect("localhost", "root", "sulayMarym=1", "bantaba");
 
-$mysqli = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
 
-?>
+
+if (!$conn) {
+    die("Error connecting to database: " . mysqli_connect_error());
+}
+
+define('ROOT_PATH', realpath(dirname(__FILE__)));
+define('BASE_URL', 'http://localhost:8001/');
