@@ -1,5 +1,7 @@
-<?php include('./config.php'); ?>
-<?php include('./includes/question_function.php'); ?>
+<?php include('config.php'); ?>
+<?php include("includes/question_function.php"); ?>
+<?php include(ROOT_PATH . './includes/question_function.php') ?>
+
 
 <!-- Get all topics -->
 
@@ -11,6 +13,7 @@
 
     <div class="container content">
 
+        <p><?php echo $test; ?></p><br />
 
         <!-- Left side menu -->
 
@@ -19,12 +22,12 @@
             <h1 class="page-title">Create/Edit Post</h1>
             <form method="post" class="new-question" action="<?php echo BASE_URL . '/create_questions.php'; ?>">
                 <!-- validation errors for the form -->
-
+                <?php include(ROOT_PATH . './includes/errors.php') ?>
 
                 <!-- if editing post, the id is required to identify that post -->
                 <h3>Add an answer</h3>
                 <textarea name="question" id="question" cols="30" rows="10"><?php echo $question; ?></textarea><br />
-                <button type="submit">Submit</button>
+                <button type="submit" name="create_post">>Submit</button>
             </form>
 
 

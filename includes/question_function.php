@@ -74,7 +74,7 @@ function createQuestion($request_values)
 
     global $conn, $errors, $userId, $question;
     $userId =   $_SESSION['user']['id'];
-    $question = htmlentities(esc($request_values['question']));
+    $question = esc($request_values['question']);
     if (empty($question)) {
         array_push($errors, "Question is required");
     }
