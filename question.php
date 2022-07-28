@@ -12,22 +12,33 @@
     <link rel="stylesheet" href="css/styles.css">
     <?php include('config.php'); ?>
     <?php include("includes/question_function.php"); ?>
-    <?php $question = getQuestion() ?>
+    <?php $question = getQuestion(); $answers = getAnswers($question); ?>
 </head>
 
 <body>
-    <nav>
+        <nav>
         <div class="nav-container">
             <div class="logo">
                 <span>bantaba</span>
             </div>
-            <form>
-                <i class="bx bx-search"></i>
-                <input type="text" placeholder="Search a question" name="question" />
-            </form>
             <div class="actions">
-                <div class="avatar">
+                <div class="avatar user">
                     <i class="bx bx-user"></i>
+                </div>
+                <div style="margin-left: 4px;">
+                    <?php if (isset($_SESSION['user']['username'])) { ?>
+                        <div class="logged_in_info">
+                            <span>Welcome: <?php echo $_SESSION['user']['name'] ?></span>
+                            |
+                            <span><a href="logout.php">logout</a></span>
+                        </div>
+                    <?php } else { ?>
+                        <div class="banner">
+                            <a href="login.php">login</a>
+
+                        </div>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
@@ -73,11 +84,12 @@
                         $time = $question['createdAt'];
                         $user = $question['author'];
                         $qid = $question['id'];
+                        $count = $question['answers'];
                         echo "<a href='#'>$title</a>"
                     ?>
                 </h3>
                 <div class="question-info">
-                    <span>1 answer</span>
+                    <?php echo "<span>$count answers</span>"; ?>
                     <i class='bx bxs-circle'></i>
                     <?php echo "<span>By $time</span>"; ?>
                     <i class='bx bxs-circle'></i>
@@ -101,15 +113,22 @@
                 <button type="submit" name="create_answer">Submit</button>
             </form>
             <div class="answers">
-                <div class="profile">
-                    <div class="avatar">
-                        <i class="bx bx-user"></i>
+                <?php
+                    $text = $answers['answer']; 
+                    $time = $answers['createdAt'];
+                    $author = $answers['author'];
+                ?>
+                <div class="answer">
+                    <div class="profile">
+                        <div class="avatar">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <span><?php echo $author; ?></span>
+                        <i class="bx bxs-circle"></i>
+                        <span><?php echo $time; ?></span>
                     </div>
-                    <span>Ousman James</span>
-                    <i class="bx bxs-circle"></i>
-                    <span>22 July, 2022</span>
-                </div>
-                <p>This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.</p>
+                    <p><?php echo $text; ?></p>
+                </div> 
             </div>
             <form class="popup" method="post" action="<?php echo 'create_questions.php'; ?>">
 

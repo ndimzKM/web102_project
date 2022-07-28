@@ -4,16 +4,12 @@
 
 
 
+<link rel="stylesheet" href="./css/styles.css" />
 <title>LifeBlog | Sign up </title>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Navbar -->
-
-        <!-- // Navbar -->
-
-        <div style="width: 40%; margin: 20px auto;">
+<div class="login">
             <form method="post" action="register.php">
                 <h2>Register on Bantaba</h2>
 
@@ -26,9 +22,5 @@
                     Already a member? <a href="login.php">Sign in</a>
                 </p>
             </form>
-        </div>
-    </div>
-    <!-- // container -->
-    <!-- Footer -->
-
-    <!-- // Footer -->
+                </div>
+    </body>

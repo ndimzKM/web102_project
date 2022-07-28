@@ -23,10 +23,6 @@
             <div class="logo">
                 <span>bantaba</span>
             </div>
-            <form>
-                <i class="bx bx-search"></i>
-                <input type="text" placeholder="Search a question" name="question" />
-            </form>
             <div class="actions">
                 <div class="avatar user">
                     <i class="bx bx-user"></i>
@@ -34,7 +30,7 @@
                 <div style="margin-left: 4px;">
                     <?php if (isset($_SESSION['user']['username'])) { ?>
                         <div class="logged_in_info">
-                            <span>welcome <?php echo $_SESSION['user']['name'] ?></span>
+                            <span>Welcome: <?php echo $_SESSION['user']['name'] ?></span>
                             |
                             <span><a href="logout.php">logout</a></span>
                         </div>
@@ -89,14 +85,16 @@
                 $title = $question['question'];
                 $author = $question['author'];
                 $id = $question['id'];
+                $time = $question['createdAt'];
+                $count = $question['answers'];
                 echo "<div class='question'>
                     <h3>
                         <a href='/question.php?id=$id'>$title</a>
                     </h3>
                     <div class='question-info'>
-                        <span>1 answer</span>
+                        <span>$count answers</span>
                         <i class='bx bxs-circle'></i>
-                        <span>5 days ago</span>
+                        <span>$time</span>
                         <i class='bx bxs-circle'></i>
                         <span>By $author</span>
                     </div>

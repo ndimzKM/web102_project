@@ -21,6 +21,7 @@ function getAllQuestions()
     $final_questions = array();
     foreach ($questions as $question) {
         $question['author'] = getPostAuthorById($question['userID']);
+        $question['answers'] = getAnswerCount($question['id']);
         array_push($final_questions, $question);
     }
     return $final_questions;
@@ -95,22 +96,49 @@ function getQuestion() {
     $question = mysqli_fetch_assoc($result);
 
     $question['author'] = getPostAuthorById($question['userID']);
+    $question['answers'] = getAnswerCount($questionID);
 
     return $question;
 }
 
+function getAnswerCount($questionID) {
+    global $conn;
+    $sql = "SELECT COUNT(*) as counts FROM answers where questionID=$questionID;";
+
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_fetch_assoc($result);
+    $count = $count['counts'];
+
+    return $count;
+}
+
+function getAnswers($question) {
+    global $conn;
+    $questionID = stripslashes($_GET['id']);
+    $sql = "SELECT * FROM answers where questionID=$questionID;";
+
+    $result = mysqli_query($conn, $sql);
+    $answers = mysqli_fetch_assoc($result);
+    $answers['author'] = getPostAuthorById($question['userID']);
+
+    return $answers;
+}
+
 function createAnswer($request_values) {
     global $conn, $errors, $userId, $answer;
-    $userId =  stripslashes($request_values['userID']);
-    echo $userId;
-    $answer = stripslashes($request_values['answer']);
-    $questionID = stripslashes($request_values['questionID']);
+    $userId =  $_SESSION['user']['id'];
+    $answerText = stripslashes($request_values['answer']);
+    $questionID = (int)stripslashes($request_values['questionID']);
 
     if(empty($answer)) {
         array_push($errors, "Answer is required");
     }
 
-    $query = "INSERT INTO answers (userID, questionID, answer, createdAt) VALUES($userId, '$question', $answer, now())";
+
+    $query = "INSERT INTO answers (userID, questionID, answer, createdAt) VALUES($userId, $questionID, '$answerText', now())";
+    mysqli_query($conn, $query);
+    header("Location: question.php?id=$questionID");
+
 }
 
 function esc(String $value)

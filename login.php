@@ -2,16 +2,12 @@
 <?php include('includes/registration_login.php'); ?>
 
 
+<link rel="stylesheet" href="./css/styles.css" />
 <title>Bantaba | Sign in </title>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Navbar -->
-
-        <!-- // Navbar -->
-
-        <div style="width: 40%; margin: 20px auto;">
+    <div class="login">
             <form method="post" action="login.php">
                 <h2>Login</h2>
                 <?php include(ROOT_PATH . '/includes/errors.php') ?>
@@ -24,6 +20,4 @@
             </form>
         </div>
     </div>
-    <!-- // container -->
-
-    \
+</body>
