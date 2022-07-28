@@ -14,29 +14,21 @@ function getAllQuestions()
 {
     global $conn;
 
-    // Admin can view all posts
-    // Author can only view their posts
-    if ($_SESSION['user']) {
-        $sql = "SELECT * FROM questions";
-    }
-    //  elseif ($_SESSION['user']['role'] == "Author") {
-    //     $user_id = $_SESSION['user']['id'];
-    //     $sql = "SELECT * FROM posts WHERE user_id=$user_id";
-    // }
+    $sql = "SELECT * FROM questions";
 
     $result = mysqli_query($conn, $sql);
     $questions = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    $final_posts = array();
+    $final_questions = array();
     foreach ($questions as $question) {
-        $question['author'] = getPostAuthorById($questions['userID']);
-        array_push($final_posts, $question);
+        $question['author'] = getPostAuthorById($question['userID']);
+        array_push($final_questions, $question);
     }
-    return $final_posts;
+    return $final_questions;
 }
 // get the author/username of a post
 function getPostAuthorById($userID)
 {
+    $userID = (int)$userID;
     global $conn;
     $sql = "SELECT username FROM users WHERE id=$userID";
     $result = mysqli_query($conn, $sql);
@@ -49,8 +41,11 @@ function getPostAuthorById($userID)
 }
 
 if (isset($_POST['create_post'])) {
-    echo 'my test';
     createQuestion($_POST);
+}
+
+if(isset($_POST['create_answer'])) {
+    createAnswer($_POST);
 }
 
 // if (isset($_GET['edit-post'])) {
@@ -75,22 +70,11 @@ function createQuestion($request_values)
 {
 
     global $conn, $errors, $userId, $question;
-    echo 'tetyy';
     $userId =  stripslashes($request_values['userID']);
     $question = stripslashes($request_values['question']);
     if (empty($question)) {
         array_push($errors, "Question is required");
     }
-
-
-
-
-
-
-
-
-
-    // create post if there are no errors in the form
 
     $query = "INSERT INTO questions (userID, question, createdAt) VALUES($userId, '$question', now())";
     mysqli_query($conn, $query);
@@ -98,6 +82,35 @@ function createQuestion($request_values)
     $_SESSION['message'] = "Question created successfully";
     header('location: index.php');
     exit(0);
+}
+
+function getQuestion() {
+    $questionID = $_GET['id'];
+    $questionID = stripslashes($questionID);
+    $questionID = htmlspecialchars($questionID);
+
+    global $conn;
+    $sql = "SELECT * FROM questions WHERE id=$questionID";
+    $result = mysqli_query($conn, $sql);
+    $question = mysqli_fetch_assoc($result);
+
+    $question['author'] = getPostAuthorById($question['userID']);
+
+    return $question;
+}
+
+function createAnswer($request_values) {
+    global $conn, $errors, $userId, $answer;
+    $userId =  stripslashes($request_values['userID']);
+    echo $userId;
+    $answer = stripslashes($request_values['answer']);
+    $questionID = stripslashes($request_values['questionID']);
+
+    if(empty($answer)) {
+        array_push($errors, "Answer is required");
+    }
+
+    $query = "INSERT INTO answers (userID, questionID, answer, createdAt) VALUES($userId, '$question', $answer, now())";
 }
 
 function esc(String $value)

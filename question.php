@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <?php include('config.php'); ?>
     <?php include("includes/question_function.php"); ?>
+    <?php $question = getQuestion() ?>
 </head>
 
 <body>
@@ -67,14 +68,20 @@
             </div>
             <div class="question">
                 <h3>
-                    <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
+                    <?php
+                        $title = $question['question'];
+                        $time = $question['createdAt'];
+                        $user = $question['author'];
+                        $qid = $question['id'];
+                        echo "<a href='#'>$title</a>"
+                    ?>
                 </h3>
                 <div class="question-info">
                     <span>1 answer</span>
                     <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
+                    <?php echo "<span>By $time</span>"; ?>
                     <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
+                    <?php echo "<span>By $user</span>"; ?>
                 </div>
                 <div class="tags">
                     <span>HTML</span>
@@ -83,10 +90,15 @@
                     <span>Web</span>
                 </div>
             </div>
-            <form class="new-question">
+            <form class="new-question" action="create_questions.php" method="POST">
                 <h3>Add an answer</h3>
-                <textarea rows="10"></textarea><br />
-                <button type="submit">Submit</button>
+                <textarea name="answer" rows="10"></textarea><br />
+            <input type="hidden" name="questionID" value="<?php echo $qid; ?>"
+                <?php if (isset($_SESSION['user']['id'])) { ?>
+                    <input value="<?php echo $_SESSION['user']['id'] ?>" name="userID" id="userID" type="hidden" />
+
+                <?php }  ?>
+                <button type="submit" name="create_answer">Submit</button>
             </form>
             <div class="answers">
                 <div class="profile">

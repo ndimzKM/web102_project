@@ -13,6 +13,7 @@
 
     <?php require_once('config.php') ?>
     <?php include("includes/question_function.php"); ?>
+    <?php $questions = getAllQuestions(); ?>
 
 </head>
 
@@ -84,114 +85,30 @@
                 <h2>All Questions</h2>
                 <a class="ask-question" href="#">Ask a question</a>
             </div>
-            <div class="question">
-                <h3>
-                    <a href="question.html">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
-                </h3>
-                <div class="question-info">
-                    <span>1 answer</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
-                </div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JS</span>
-                    <span>Web</span>
-                </div>
-            </div>
-            <div class="question">
-                <h3>
-                    <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
-                </h3>
-                <div class="question-info">
-                    <span>1 answer</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
-                </div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JS</span>
-                    <span>Web</span>
-                </div>
-            </div>
-            <div class="question">
-                <h3>
-                    <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
-                </h3>
-                <div class="question-info">
-                    <span>1 answer</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
-                </div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JS</span>
-                    <span>Web</span>
-                </div>
-            </div>
-            <div class="question">
-                <h3>
-                    <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
-                </h3>
-                <div class="question-info">
-                    <span>1 answer</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
-                </div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JS</span>
-                    <span>Web</span>
-                </div>
-            </div>
-            <div class="question">
-                <h3>
-                    <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
-                </h3>
-                <div class="question-info">
-                    <span>1 answer</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
-                </div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JS</span>
-                    <span>Web</span>
-                </div>
-            </div>
-            <div class="question">
-                <h3>
-                    <a href="#">How to fix docker: Got permission while trying to connect to the Docker daemon socket.</a>
-                </h3>
-                <div class="question-info">
-                    <span>1 answer</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>5 days ago</span>
-                    <i class='bx bxs-circle'></i>
-                    <span>By green2get</span>
-                </div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JS</span>
-                    <span>Web</span>
-                </div>
-            </div>
+            <?php foreach($questions as $question) {
+                $title = $question['question'];
+                $author = $question['author'];
+                $id = $question['id'];
+                echo "<div class='question'>
+                    <h3>
+                        <a href='/question.php?id=$id'>$title</a>
+                    </h3>
+                    <div class='question-info'>
+                        <span>1 answer</span>
+                        <i class='bx bxs-circle'></i>
+                        <span>5 days ago</span>
+                        <i class='bx bxs-circle'></i>
+                        <span>By $author</span>
+                    </div>
+                    <div class='tags'>
+                        <span>YES</span>
+                        <span>CSS</span>
+                        <span>JS</span>
+                        <span>Web</span>
+                    </div>
+                </div>";
+                }
+            ?>
             <form class="popup" action="question.php" method="POST">
                 <h3>Add question</h3>
                 <div class="profile">
