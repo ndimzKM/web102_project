@@ -1,8 +1,9 @@
 <?php
 
 $post_id = 0;
+$errors = array();
 
-$questions = "";
+$question = "";
 
 
 /* - - - - - - - - - - 
@@ -48,6 +49,7 @@ function getPostAuthorById($userID)
 }
 
 if (isset($_POST['create_post'])) {
+    echo 'my test';
     createQuestion($_POST);
 }
 
@@ -73,8 +75,9 @@ function createQuestion($request_values)
 {
 
     global $conn, $errors, $userId, $question;
-    $userId =   $_SESSION['user']['id'];
-    $question = esc($request_values['question']);
+    echo 'tetyy';
+    $userId =  stripslashes($request_values['userID']);
+    $question = stripslashes($request_values['question']);
     if (empty($question)) {
         array_push($errors, "Question is required");
     }
@@ -86,17 +89,27 @@ function createQuestion($request_values)
 
 
 
-    // create post if there are no errors in the form
-    if (count($errors) == 0) {
-        $query = "INSERT INTO questions (userID, question, createdAt) VALUES(1, '$question', now())";
-        mysqli_query($conn, $query);
 
-        $_SESSION['message'] = "Question created successfully";
-        header('location: questions.php');
-        exit(0);
-    }
+    // create post if there are no errors in the form
+
+    $query = "INSERT INTO questions (userID, question, createdAt) VALUES($userId, '$question', now())";
+    mysqli_query($conn, $query);
+
+    $_SESSION['message'] = "Question created successfully";
+    header('location: index.php');
+    exit(0);
 }
 
+function esc(String $value)
+{
+    // bring the global db connect object into function
+    global $conn;
+
+    $val = trim($value); // remove empty space sorrounding string
+    $val = mysqli_real_escape_string($conn, $value);
+
+    return $val;
+}
 /* * * * * * * * * * * * * * * * * * * * *
 	* - Takes post id as parameter
 	* - Fetches the post from database
