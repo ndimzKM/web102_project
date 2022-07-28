@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/styles.css">
+    <?php include('config.php'); ?>
+    <?php include("includes/question_function.php"); ?>
 </head>
 
 <body>
@@ -97,20 +99,28 @@
                 </div>
                 <p>This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.This is going to be a very long text that might span across some stuff.</p>
             </div>
-            <form class="popup">
+            <form class="popup" method="post" action="<?php echo 'create_questions.php'; ?>">
+
                 <h3>Add question</h3>
                 <div class="profile">
                     <div class="avatar">
                         <i class="bx bx-user"></i>
                     </div>
-                    <span>Ousman James</span>
+                    <span>Ousman James djfkfkfkffk</span>
+                    <p> test <?php echo $_SESSION['user']['id'] ?></p>
+
                 </div>
-                <textarea rows="10" name="question"></textarea>
+                <textarea rows="10" name="question" id="question"></textarea>
                 <div class="add-tags">
                     <h4>Add tags separated by commas</h4>
                     <input type="text" placeholder="html,css,js" />
                 </div>
-                <button type="submit">Submit</button>
+
+                <?php if (isset($_SESSION['user']['id'])) { ?>
+                    <input value="<?php echo $_SESSION['user']['id'] ?>" name="userID" id="userID" type="hidden" />
+
+                <?php }  ?>
+                <button type="submit" name="create_post">Submit</button>
             </form>
         </section>
     </main>

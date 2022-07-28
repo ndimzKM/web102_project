@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <?php require_once('config.php') ?>
+    <?php include("includes/question_function.php"); ?>
 
 </head>
 
@@ -32,7 +33,7 @@
                 <div style="margin-left: 4px;">
                     <?php if (isset($_SESSION['user']['username'])) { ?>
                         <div class="logged_in_info">
-                            <span>welcome <?php echo $_SESSION['user']['username'] ?></span>
+                            <span>welcome <?php echo $_SESSION['user']['name'] ?></span>
                             |
                             <span><a href="logout.php">logout</a></span>
                         </div>
@@ -197,14 +198,20 @@
                     <div class="avatar">
                         <i class="bx bx-user"></i>
                     </div>
-                    <span>Ousman James</span>
+                    <span><?php echo $_SESSION['user']['name']; ?></span>
+                    <h1> <?php echo $_SESSION['user']['id']; ?>
+
                 </div>
                 <textarea rows="10" name="question"></textarea>
+                <?php if (isset($_SESSION['user']['id'])) { ?>
+                    <input value="<?php echo $_SESSION['user']['id'] ?>" name="userID" id="userID" type="hidden" />
+
+                <?php }  ?>
                 <div class="add-tags">
                     <h4>Add tags separated by commas</h4>
                     <input type="text" placeholder="html,css,js" />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" name="create_post">Submit</button>
             </form>
         </section>
     </main>
