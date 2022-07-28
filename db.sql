@@ -25,6 +25,7 @@ CREATE TABLE `answers` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `questionID` INT NOT NULL,
     `userID` INT NOT NULL,
+    `answer` TEXT NOT NULL,
     `createdAt` TIMESTAMP NOT NULL,
     FOREIGN KEY (`userID`) REFERENCES users(`id`),
     FOREIGN KEY (`questionID`) REFERENCES questions(`id`),

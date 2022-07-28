@@ -3,7 +3,7 @@ session_start();
 
 // connect to database
 // coming soon...
-$conn = mysqli_connect("localhost", "root", "sulayMarym=1", "bantaba");
+$conn = mysqli_connect("localhost", "root", "", "bantaba");
 
 $test = 'testtt';
 
